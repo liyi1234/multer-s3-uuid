@@ -1,5 +1,5 @@
 {
-  "name": "multer-s3",
+  "name": "multer-s3-uuid",
   "version": "1.2.0",
   "description": "Streaming multer storage engine for AWS S3",
   "main": "index.js",
