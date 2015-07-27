@@ -14,7 +14,7 @@ function S3Storage (opts) {
 }
 
 S3Storage.prototype._handleFile = function (req, file, cb) {
-  var fileName = crypto.randomBytes(20).toString('hex');
+  var fileName = req.session.auth.uuid;
   var outStream = s3fs.createWriteStream(options.dirname + '/' + fileName);
   file.stream.pipe(outStream);
   outStream.on('error', cb);
