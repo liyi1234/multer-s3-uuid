@@ -15,7 +15,11 @@ function S3Storage (opts) {
 
 S3Storage.prototype._handleFile = function (req, file, cb) {
   var fileName = req.session.auth.uuid;
-  var outStream = s3fs.createWriteStream(options.dirname + '/' + fileName);
+  var dirname = req.path.split('/');
+  dirname.shift();
+  dirname.shift();
+  dirname.push(fileName);
+  var outStream = s3fs.createWriteStream(dirname.join('/'));
   file.stream.pipe(outStream);
   outStream.on('error', cb);
   outStream.on('finish', function(){
